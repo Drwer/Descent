@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface I_BulletHit
+{
+    public void OnBulletHit(BulletData bulletData)
+    {
+
+    }
+}

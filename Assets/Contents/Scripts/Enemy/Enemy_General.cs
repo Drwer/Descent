@@ -24,7 +24,7 @@ public class Enemy_General : MonoBehaviour
 
     private void Start()
     {
-        shooting_cooldown = bullets[0].GetComponent<Bullet>().bulletData.cooldown;
+        //shooting_cooldown = bullets[0].GetComponent<Bullet>().bulletData.cooldown;
     }
 
     public void StartEnemyCoroutine(string coroutine)

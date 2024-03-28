@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
         NONE,
         Loading,
         MainMenu,
-        HighestScore,
         Options,
         Volume,
         Commands,
@@ -32,7 +31,6 @@ public class UIManager : MonoBehaviour
         Pause,
         GameWon,
         GameOver,
-        WeaponChange,
         Lore,
         Comm,
     }

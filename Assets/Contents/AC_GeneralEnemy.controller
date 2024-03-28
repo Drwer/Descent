@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc85495e1963824eaaf7f902b1c24c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target_transform: {fileID: 0}
+  player: {fileID: 5397973536148711444, guid: 3be440c4f5e673f49b5b46358deb6d81, type: 3}
 --- !u!1107 &-5165318623693658207
 AnimatorStateMachine:
   serializedVersion: 6
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b0e1ccd291a8f47b38589337db83df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target_transform: {fileID: 0}
+  target_transform: {fileID: 5397973536148711444, guid: 3be440c4f5e673f49b5b46358deb6d81, type: 3}
 --- !u!1101 &-906143003247244891
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628bd15be9664914c81446a8ba6a838c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target_transform: {fileID: 5397973536148711444, guid: 3be440c4f5e673f49b5b46358deb6d81, type: 3}
 --- !u!1102 &7849696665170881120
 AnimatorState:
   serializedVersion: 6

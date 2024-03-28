@@ -18,7 +18,7 @@ public class Enemy_General : MonoBehaviour
 
     public List<GameObject> bullets = new List<GameObject>();
     public Transform shooting_position;
-    public bool bCanShoot;
+    public bool bCanShoot = true;
     public float shooting_cooldown;
     public float chasing_max_radius;
 

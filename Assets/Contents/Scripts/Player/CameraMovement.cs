@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float sensitivity = 100f; // Mouse sensitivity
-    public Transform playerBody; // Reference to the player's body to rotate along with the camera
+    public float sensitivity = 100f;
+    public Transform playerBody;
 
     float xRotation = 0f;
+    float yRotation = 0f;
 
     void Start()
     {
-        // Lock cursor to the center of the screen and hide it
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -23,7 +23,11 @@ public class CameraMovement : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Limit vertical rotation to prevent flipping
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        // Rotate the camera horizontally
+        yRotation += mouseX;
+
+        // Combine both rotations into a single quaternion
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
 
         // Rotate the player horizontally
         playerBody.Rotate(Vector3.up * mouseX);

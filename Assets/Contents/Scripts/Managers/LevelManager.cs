@@ -29,13 +29,12 @@ public class LevelManager : MonoBehaviour
     private void Awake() { }
     public void StartLevel()
     {
-            InstantiateLevelBase();
-            //SpawnAmmos();
-            //SpawnShield();
-            //SpawnEnemies();
-            SpawnPlayer(levelInstance.transform);
+        InstantiateLevelBase();
+        //SpawnAmmos();
+        //SpawnShield();
+        SpawnPlayer(levelInstance.transform);
 
-            //Ammos, Shield, Enemy Spawn
+        //Ammos, Shield, Enemy Spawn
     }
     public void InstantiateLevelBase()
     {

@@ -29,15 +29,12 @@ public class GameStateManager : MonoBehaviour
     {
         Loading,
         MainMenu,
-        HighestScore,
         Options,
         Volume,
         Commands,
         Gameplay,
-        Pause,
         GameWon,
         GameOver,
-        WeaponChange,
         Lore,
         Comm,
     }

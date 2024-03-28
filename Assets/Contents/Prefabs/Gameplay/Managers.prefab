@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingGameState: 0
   player: {fileID: 8170039758990079071, guid: 3be440c4f5e673f49b5b46358deb6d81, type: 3}
-  levelGameObject: {fileID: 8937551998274946418, guid: 1a7a9ef30340bef44920c4d62bb317da, type: 3}
+  levelGameObject: {fileID: 1011366339048055967, guid: 7d18c3eb494a3334bbcbf78ceeb3597e, type: 3}
   isGameStarted: 0
   isPauseMenuOpened: 0
 --- !u!114 &9002074142164809309
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 8170039758990079071, guid: 3be440c4f5e673f49b5b46358deb6d81, type: 3}
   playerInstance: {fileID: 0}
-  levelObject: {fileID: 8937551998274946418, guid: 1a7a9ef30340bef44920c4d62bb317da, type: 3}
+  levelObject: {fileID: 1011366339048055967, guid: 7d18c3eb494a3334bbcbf78ceeb3597e, type: 3}
   levelInstance: {fileID: 0}
   groundLayermask:
     serializedVersion: 2

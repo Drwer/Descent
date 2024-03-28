@@ -13,7 +13,7 @@ public class Enemy_Patrol_Behaviour : StateMachineBehaviour
     private float degrees_to_rotate;
     private Vector3 axis_to_rotate_around;
 
-    private Transform target_transform;
+    public Transform target_transform;
     private float enraging_radius;
     private LayerMask whatIsPlayer;
 
@@ -26,7 +26,6 @@ public class Enemy_Patrol_Behaviour : StateMachineBehaviour
         transform_ref = animator.gameObject.GetComponent<Transform>();
         rigidbody_ref = animator.gameObject.GetComponent<Rigidbody>();
     }
-
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (Physics.OverlapSphere(patrolling_points[0], 0.1f, animator.gameObject.layer).Length != 0)
@@ -41,13 +40,11 @@ public class Enemy_Patrol_Behaviour : StateMachineBehaviour
             animator.SetTrigger("start_chase");
         }
     }
-
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetBehaviour<Enemy_Chase_Behaviour>().target_transform = target_transform;
+        animator.GetBehaviour<Enemy_Chase_Behaviour>().player = target_transform;
         animator.GetBehaviour<Enemy_Attack_Behaviour>().target_transform = target_transform;
     }
-
     IEnumerator SwitchPatrollingPoint()
     {
         rigidbody_ref.velocity = Vector3.zero;
@@ -63,7 +60,6 @@ public class Enemy_Patrol_Behaviour : StateMachineBehaviour
         rigidbody_ref.velocity = transform_ref.forward * patroling_speed;
         yield return null;
     }
-
     private bool Turn()
     { 
         if (degrees_to_rotate > turning_speed * Time.deltaTime)

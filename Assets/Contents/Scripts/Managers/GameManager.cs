@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.SocialPlatforms.Impl;
 using Unity.PlasticSCM.Editor.WebApi;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,12 +14,24 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject levelGameObject;
 
+    public float score;
+
     //public AudioSource levelOst;
     //public AudioSource backgroundMenuOst;
 
     public bool isGameStarted = false;
     public bool isPauseMenuOpened = false;
     private bool isGamePaused = false;
+
+    public struct playerGun
+    {
+        public string name;
+        public Sprite gun;
+    }
+
+    public List<playerGun> gunList = new List<playerGun>();
+    public Dictionary<string, playerGun> playerGunDic = new Dictionary<string, playerGun>();
+    public playerGun currentPlayer;
 
     private static GameManager _instance;
     public static GameManager instance
@@ -41,18 +54,26 @@ public class GameManager : MonoBehaviour
         Debug.Log("Initialazing GameStates");
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Loading, new GSLoading());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.MainMenu, new GSMainMenu());
-        GameStateManager.instance.RegisterState(GameStateManager.GameStates.HighestScore, new GSHighestScore());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Options, new GSOptions());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Volume, new GSVolume());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Commands, new GSCommands());
-        GameStateManager.instance.RegisterState(GameStateManager.GameStates.Pause, new GSPause());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Gameplay, new GSGameplay());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.GameWon, new GSGameWon());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.GameOver, new GSGameOver());
-        GameStateManager.instance.RegisterState(GameStateManager.GameStates.WeaponChange, new GSWeaponChange());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Lore, new GSLore());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Comm, new GSComm());
+
+        InitializedGuns();
     }
+    private void InitializedGuns()
+    {
+        foreach (playerGun gun in gunList)
+        {
+            playerGunDic.Add(gun.name, gun);
+        }
+        SetPreferredGun("Missle");
+    }
+    public void SetPreferredGun(string name) { }
     private void Start()
     {
         Debug.Log("Setting Current GameState");
@@ -73,10 +94,6 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && isGameStarted)
-        {
-            GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.Pause);
-        }
         if (Input.GetKeyDown(KeyCode.Y) && isGameStarted)
         {
             GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.GameWon);
@@ -91,24 +108,12 @@ public class GameManager : MonoBehaviour
         isGameStarted = true;
         LoadLevel();
     }
-    public void Pause(bool active)
-    {
-        isGamePaused = active;
-        if (active)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
-    }
     public bool IsGameStarted()
     {
         return isGameStarted;
     }
-    public bool IsGamePaused()
+    public void ScoreSystem()
     {
-        return isGamePaused;
+        //score = remainingShieldPower * 50 + remainingHealthPoints * 100 + killedEnemies * 30 + nariCollected * 20
     }
 }

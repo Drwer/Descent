@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,13 @@ public class UIComm : MonoBehaviour, IGameUI
 {
     public UIManager.GameUI UIType;
 
-    public Button nextButton;
+    public Button nextPageButton;
 
     public void Init()
     {
-        nextButton.onClick.AddListener(OnNextButtonClick);
+        nextPageButton.onClick.AddListener(OnNextPageButtonClick);
     }
-    public void OnNextButtonClick()
+    public void OnNextPageButtonClick()
     {
         GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.Gameplay);
     }

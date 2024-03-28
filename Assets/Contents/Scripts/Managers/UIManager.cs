@@ -26,10 +26,15 @@ public class UIManager : MonoBehaviour
         MainMenu,
         HighestScore,
         Options,
+        Volume,
+        Commands,
         Gameplay,
         Pause,
-        GameOver,
         GameWon,
+        GameOver,
+        WeaponChange,
+        Lore,
+        Comm,
     }
     private Dictionary<GameUI, IGameUI> registeredUIs = new Dictionary<GameUI, IGameUI>();
 

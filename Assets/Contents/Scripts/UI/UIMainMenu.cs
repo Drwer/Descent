@@ -11,6 +11,7 @@ public class UIMainMenu : MonoBehaviour, IGameUI
     public Button highestScoreButton;
     public Button optionsButton;
     public Button quitButton;
+    public Button weaponButton;
 
     public void Init()
     {
@@ -18,6 +19,7 @@ public class UIMainMenu : MonoBehaviour, IGameUI
         highestScoreButton.onClick.AddListener(OnHighestScoreButtonClick);
         optionsButton.onClick.AddListener(OnOptionsButtonClick);
         quitButton.onClick.AddListener(OnQuitButtonClick);
+        weaponButton.onClick.AddListener(OnWeaponButtonClick);
     }
     public void SetActive(bool active)
     {
@@ -27,7 +29,8 @@ public class UIMainMenu : MonoBehaviour, IGameUI
 
     private void OnNewGameButtonClick()
     {
-        GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.Gameplay);
+        GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.Lore);
+        SetActive(false);
     }
     private void OnHighestScoreButtonClick()
     {
@@ -36,6 +39,10 @@ public class UIMainMenu : MonoBehaviour, IGameUI
     private void OnOptionsButtonClick()
     {
         GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.Options);
+    }
+    private void OnWeaponButtonClick()
+    {
+        GameStateManager.instance.SetCurrentGameState(GameStateManager.GameStates.WeaponChange);
     }
     private void OnQuitButtonClick()
     {

@@ -8,18 +8,13 @@ public class GSGameplay : IGameState
     {
         if (!GameManager.instance.IsGameStarted())
         {
+            GameManager.instance.StartGame();
             //GameManager.instance.score = 0;
             //LevelManager.instance.InitializeLevel();
         }
         UIManager.instance.ShowUI(UIManager.GameUI.Gameplay);
         //MusicManager.instance.leveltheme();
     }
-    public void OnStateUpdate()
-    {
-        if (!GameManager.instance.IsGameStarted() && Input.anyKeyDown)
-        {
-            GameManager.instance.StartGame();
-        }
-    }
+    public void OnStateUpdate() { }
     public void OnStateExit() { }
 }

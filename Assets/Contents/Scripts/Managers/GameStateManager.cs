@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using static GameStateManager;
 
@@ -30,16 +31,27 @@ public class GameStateManager : MonoBehaviour
         MainMenu,
         HighestScore,
         Options,
+        Volume,
+        Commands,
         Gameplay,
         Pause,
         GameWon,
         GameOver,
+        WeaponChange,
+        Lore,
+        Comm,
     }
 
     public void RegisterState(GameStates gstate, IGameState state)
     {
-        registeredGameStates.Add(gstate, state);
-
+        if (!registeredGameStates.ContainsKey(gstate))
+        {
+            registeredGameStates.Add(gstate, state);
+        }
+        else
+        {
+            Debug.LogWarning("State " + gstate + " is already registered.");
+        }
     }
     public void SetCurrentGameState(GameStates gstate)
     {

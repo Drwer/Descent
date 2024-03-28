@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.SocialPlatforms.Impl;
+using Unity.PlasticSCM.Editor.WebApi;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,24 +25,33 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
-                _instance = FindAnyObjectByType<GameManager>();
-            if (_instance == null)
-                Debug.LogError("GameManager not found, can't create singleton object");
             return _instance;
         }
     }
     private void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+        }else
+        {
+            Destroy(this.gameObject);
+        }
+
         Debug.Log("Initialazing GameStates");
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Loading, new GSLoading());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.MainMenu, new GSMainMenu());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.HighestScore, new GSHighestScore());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Options, new GSOptions());
+        GameStateManager.instance.RegisterState(GameStateManager.GameStates.Volume, new GSVolume());
+        GameStateManager.instance.RegisterState(GameStateManager.GameStates.Commands, new GSCommands());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Pause, new GSPause());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.Gameplay, new GSGameplay());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.GameWon, new GSGameWon());
         GameStateManager.instance.RegisterState(GameStateManager.GameStates.GameOver, new GSGameOver());
+        GameStateManager.instance.RegisterState(GameStateManager.GameStates.WeaponChange, new GSWeaponChange());
+        GameStateManager.instance.RegisterState(GameStateManager.GameStates.Lore, new GSLore());
+        GameStateManager.instance.RegisterState(GameStateManager.GameStates.Comm, new GSComm());
     }
     private void Start()
     {
@@ -50,12 +60,11 @@ public class GameManager : MonoBehaviour
     }
     public void LoadLevel()
     {
-        //GameObject levelGameObject =
+        GameObject levelGameObject = GameObject.Instantiate(gameObject);
         levelGameObject.transform.position = Vector3.zero;
         LevelManager cnt = levelGameObject.GetComponent<LevelManager>();
         cnt.StartLevel();
         player = cnt.playerObject;
-        isGameStarted = true;
     }
     public void DestroyLevel()
     {
@@ -80,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         isGameStarted = true;
+        LoadLevel();
     }
     public void Pause(bool active)
     {
